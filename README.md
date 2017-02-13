@@ -21,3 +21,5 @@ Throughout these repository, I'll make practice about how to create my multiplay
 - Node JS: https://nodejs.org
   - npm install Express
   - npm install Socket.io
+- Mecanim Pack: https://www.assetstore.unity3d.com/en/#!/content/6127
+- Run and Attack Animations: https://www.assetstore.unity3d.com/en/#!/content/36405
