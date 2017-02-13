@@ -8,7 +8,7 @@ public class NavigatePosition : MonoBehaviour {
 		agent = GetComponent<NavMeshAgent> ();
 	}
 	
-	void Update () {
-		agent.SetDestination(Vector3.zero);
+	public void NavigateTo (Vector3 position) {
+		agent.SetDestination(position);
 	}
 }

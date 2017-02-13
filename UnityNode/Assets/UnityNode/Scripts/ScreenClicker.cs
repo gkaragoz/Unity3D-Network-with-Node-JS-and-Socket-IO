@@ -18,6 +18,9 @@ public class ScreenClicker : MonoBehaviour {
         if(Physics.Raycast(ray, out hit))
         {
             Debug.Log(hit.collider.gameObject.name);
+
+            ClickMove clickMove = hit.collider.gameObject.GetComponent<ClickMove>();
+            clickMove.OnClick(hit.point);
         }
     }
 }
