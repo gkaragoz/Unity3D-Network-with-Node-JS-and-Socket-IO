@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using SocketIO;
+using System;
 
 public class Network : MonoBehaviour {
 
@@ -11,7 +12,9 @@ public class Network : MonoBehaviour {
         socket = GetComponent<SocketIOComponent>();
         socket.On("open", OnConnected);
         socket.On("spawn", OnSpawned);
+        socket.On("move", OnMove);
 	}
+
 
     void OnConnected(SocketIOEvent e)
     {
@@ -22,5 +25,9 @@ public class Network : MonoBehaviour {
     {
         Debug.Log("Player spawned");
         Instantiate(playerPrefab);
+    }
+    private void OnMove(SocketIOEvent e)
+    {
+        Debug.Log("Player is moving " + e.data);
     }
 }
