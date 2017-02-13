@@ -1,0 +1,11 @@
+Temp/
+Library/
+Builds/
+*.csproj
+*.sln
+*.sublime-workspace
+*.sublime-project
+*.DS_Store
+*/*.DS_Store
+*.userprefs
+*.apk
