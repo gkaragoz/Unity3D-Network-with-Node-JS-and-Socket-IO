@@ -1,6 +1,7 @@
 Temp/
 Library/
 Builds/
+VSCode/
 *.csproj
 *.sln
 *.sublime-workspace
