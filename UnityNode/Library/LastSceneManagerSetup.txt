@@ -1,0 +1,4 @@
+sceneSetups:
+- path: Assets/SocketIO/Scenes/SocketIOTest.unity
+  isLoaded: 1
+  isActive: 1
