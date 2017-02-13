@@ -14,3 +14,10 @@ Throughout these repository, I'll make practice about how to create my multiplay
 - I'll implement a Player death logic.
 - I'll improve Anti-Hacking with Server Authorative Code.
 - I'll handle and cover some hacks stuff like if Player hack their position what should we do? something like that.
+
+#### External libraries:
+
+- Socket.IO for Unity 3D: https://www.assetstore.unity3d.com/en/#!/content/21721
+- Node JS: https://nodejs.org
+  - npm install Express
+  - npm install Socket.io
