@@ -10,7 +10,7 @@ io.on('connection', function(socket){
 
 	console.log('Client connected, broadcasting spawn, id:' , thisClientId);
 
-	socket.broadcast.emit('spawn');
+	socket.broadcast.emit('spawn', {id: thisClientId});
 	playerCount++;
     
     for(i=0; i<playerCount; i++){
