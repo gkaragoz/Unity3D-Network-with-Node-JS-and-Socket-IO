@@ -35,5 +35,18 @@ public class Network : MonoBehaviour {
     private void OnMove(SocketIOEvent e)
     {
         Debug.Log("Player is moving " + e.data);
+
+        Vector3 position = new Vector3(GetFloatFromJson(e.data, "x"), 0, GetFloatFromJson(e.data, "y"));
+
+        var player = players[e.data["id"].ToString()];
+
+        NavigatePosition navigatePos = player.GetComponent<NavigatePosition>();
+
+        navigatePos.NavigateTo(position);
+    }
+
+    float GetFloatFromJson(JSONObject data, string key)
+    {
+        return float.Parse(data[key].ToString().Replace("\"", ""));
     }
 }
