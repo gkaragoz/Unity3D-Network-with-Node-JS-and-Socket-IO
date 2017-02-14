@@ -9,6 +9,8 @@ public class Network : MonoBehaviour {
 
     public GameObject playerPrefab;
 
+    public GameObject myPlayer;
+
     Dictionary<string, GameObject> players;
 
 	void Start () {
@@ -17,6 +19,8 @@ public class Network : MonoBehaviour {
         socket.On("spawn", OnSpawned);
         socket.On("move", OnMove);
         socket.On("disconnected", OnDisconnected);
+        socket.On("requestPosition", OnRequestPosition);
+        socket.On("updatePosition", OnUpdatePosition);
 
         players = new Dictionary<string, GameObject>();
 	}
@@ -48,6 +52,24 @@ public class Network : MonoBehaviour {
         navigatePos.NavigateTo(position);
     }
 
+    private void OnRequestPosition(SocketIOEvent e)
+    {
+        Debug.Log("Server is requesting position");
+
+        socket.Emit("updatePosition", new JSONObject(VectorToJson(myPlayer.transform.position)));
+    }
+
+    private void OnUpdatePosition(SocketIOEvent e)
+    {
+        Debug.Log("Updating position: "+ e.data);
+
+        Vector3 position = new Vector3(GetFloatFromJson(e.data, "x"), 0, GetFloatFromJson(e.data, "y"));
+
+        var player = players[e.data["id"].ToString()];
+
+        player.transform.position = position;
+    }
+
     private void OnDisconnected(SocketIOEvent e)
     {
         Debug.Log("Client disconnected: " + e.data);
@@ -63,4 +85,8 @@ public class Network : MonoBehaviour {
     {
         return float.Parse(data[key].ToString().Replace("\"", ""));
     }
+
+	public static string VectorToJson(Vector3 vector){
+		return string.Format(@"{{""x"":""{0}"", ""y"":""{1}""}}", vector.x, vector.z);
+	}
 }
