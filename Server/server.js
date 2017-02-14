@@ -1,12 +1,15 @@
 var io = require('socket.io')(process.env.PORT || 3000);
+var shortid = require('shortid');
 
 console.log('Server started');
 
 var playerCount = 0;
 
 io.on('connection', function(socket){
-	console.log('Client connected, broadcasting spawn');
-	
+    var thisClientId = shortid.generate();
+
+	console.log('Client connected, broadcasting spawn, id:' , thisClientId);
+
 	socket.broadcast.emit('spawn');
 	playerCount++;
     
@@ -16,7 +19,8 @@ io.on('connection', function(socket){
     }
     
 	socket.on('move', function(data) {
-		console.log('Client moved', JSON.stringify(data));
+        data.id = thisClientId;
+    	console.log('Client moved', JSON.stringify(data));
 
         socket.broadcast.emit('move', data);
 	});
