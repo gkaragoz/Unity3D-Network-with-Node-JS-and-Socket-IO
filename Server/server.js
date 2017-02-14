@@ -32,5 +32,9 @@ io.on('connection', function(socket){
     
     socket.on('disconnect', function() {
         console.log('Client disconnected');
+
+        players.splice(players.indexOf(thisClientId), 1);
+
+        socket.broadcast.emit('disconnected', {id: thisClientId});
     });
 })

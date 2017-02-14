@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using SocketIO;
 using System.Collections.Generic;
+using System;
 
 public class Network : MonoBehaviour {
 
@@ -15,9 +16,11 @@ public class Network : MonoBehaviour {
         socket.On("open", OnConnected);
         socket.On("spawn", OnSpawned);
         socket.On("move", OnMove);
+        socket.On("disconnected", OnDisconnected);
 
         players = new Dictionary<string, GameObject>();
 	}
+
 
     void OnConnected(SocketIOEvent e)
     {
@@ -43,6 +46,17 @@ public class Network : MonoBehaviour {
         NavigatePosition navigatePos = player.GetComponent<NavigatePosition>();
 
         navigatePos.NavigateTo(position);
+    }
+
+    private void OnDisconnected(SocketIOEvent e)
+    {
+        Debug.Log("Client disconnected: " + e.data);
+
+        string id = e.data["id"].ToString();
+
+        var player = players[id];
+        Destroy(player);
+        players.Remove(id);
     }
 
     float GetFloatFromJson(JSONObject data, string key)
