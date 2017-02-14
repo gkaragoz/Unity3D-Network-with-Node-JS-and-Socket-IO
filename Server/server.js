@@ -6,27 +6,38 @@ console.log('Server started');
 var players = [];
 
 io.on('connection', function(socket){
-    var thisClientId = shortid.generate();
+    var thisPlayerId = shortid.generate();
 
-    players.push(thisClientId);
+    var player = {
+        id: thisPlayerId,
+        x:0,
+        y:0
+    }
 
-	console.log('Client connected, broadcasting spawn, id:' , thisClientId);
+    players[thisPlayerId] = player;
 
-	socket.broadcast.emit('spawn', {id: thisClientId});
+	console.log('Client connected, broadcasting spawn, id:' , thisPlayerId);
+
+	socket.broadcast.emit('spawn', {id: thisPlayerId});
     socket.broadcast.emit('requestPosition');
 
-    players.forEach(function(playerId){
-        if(playerId == thisClientId){
-            return;
+    for(var playerId in players){
+        if(playerId == thisPlayerId){
+            continue;
         }
         
-        socket.emit('spawn', {id: playerId});
+        socket.emit('spawn', players[playerId]);
         console.log('Sending spawn to new player for id: ', playerId);
-    });
+    };
     
 	socket.on('move', function(data) {
-        data.id = thisClientId;
+        data.id = thisPlayerId;
     	console.log('Client moved', JSON.stringify(data));
+
+        player.x = data.x;
+        player.y = data.y;
+
+        console.log(players);
 
         socket.broadcast.emit('move', data);
 	});
@@ -34,7 +45,7 @@ io.on('connection', function(socket){
     socket.on('updatePosition', function(data){
         console.log("Update position: ", data);
 
-        data.id = thisClientId;
+        data.id = thisPlayerId;
 
         socket.broadcast.emit('updatePosition', data);
     });
@@ -42,8 +53,8 @@ io.on('connection', function(socket){
     socket.on('disconnect', function() {
         console.log('Client disconnected');
 
-        players.splice(players.indexOf(thisClientId), 1);
+        delete players[thisPlayerId];
 
-        socket.broadcast.emit('disconnected', {id: thisClientId});
+        socket.broadcast.emit('disconnected', {id: thisPlayerId});
     });
 })

@@ -4,7 +4,7 @@ public class NavigatePosition : MonoBehaviour {
 
 	NavMeshAgent agent;
 
-	void Start () {
+	void Awake () {
 		agent = GetComponent<NavMeshAgent> ();
 	}
 	

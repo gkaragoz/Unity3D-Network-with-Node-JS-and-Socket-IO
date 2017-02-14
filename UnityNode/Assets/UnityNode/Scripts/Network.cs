@@ -25,7 +25,6 @@ public class Network : MonoBehaviour {
         players = new Dictionary<string, GameObject>();
 	}
 
-
     void OnConnected(SocketIOEvent e)
     {
         Debug.Log("Connected");
@@ -34,7 +33,15 @@ public class Network : MonoBehaviour {
     void OnSpawned(SocketIOEvent e)
     {
         Debug.Log("Player spawned" + e.data);
-        GameObject player = Instantiate(playerPrefab);
+        GameObject player = Instantiate(playerPrefab, Vector3.zero, Quaternion.identity) as GameObject;
+
+        if (e.data["x"]){
+            Vector3 movePosition = new Vector3(GetFloatFromJson(e.data, "x"), 0, GetFloatFromJson(e.data, "y"));
+
+            NavigatePosition navigatePos = player.GetComponent<NavigatePosition>();
+
+            navigatePos.NavigateTo(movePosition);
+        }
 
         players.Add(e.data["id"].ToString(), player);
         Debug.Log("Player Count: " + players.Count);
