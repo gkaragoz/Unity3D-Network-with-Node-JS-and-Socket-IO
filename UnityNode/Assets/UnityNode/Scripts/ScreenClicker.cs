@@ -17,8 +17,8 @@ public class ScreenClicker : MonoBehaviour {
 
         if(Physics.Raycast(ray, out hit))
         {
-            ClickMove clickMove = hit.collider.gameObject.GetComponent<ClickMove>();
-            clickMove.OnClick(hit.point);
+            IClickable clickable = hit.collider.gameObject.GetComponent<IClickable>();
+            clickable.OnClick(hit);
         }
     }
 }

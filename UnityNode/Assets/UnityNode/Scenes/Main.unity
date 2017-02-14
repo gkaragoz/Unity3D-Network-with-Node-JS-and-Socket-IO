@@ -185,13 +185,18 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 455250, guid: 49f863af6a107d047ac1dd3b900dc5f9, type: 2}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 11455258, guid: 49f863af6a107d047ac1dd3b900dc5f9, type: 2}
       propertyPath: socket
       value: 
       objectReference: {fileID: 784916637}
-    m_RemovedComponents: []
+    - target: {fileID: 113840, guid: 49f863af6a107d047ac1dd3b900dc5f9, type: 2}
+      propertyPath: m_Name
+      value: MyPlayer
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 11417278, guid: 49f863af6a107d047ac1dd3b900dc5f9, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 49f863af6a107d047ac1dd3b900dc5f9, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &936072474

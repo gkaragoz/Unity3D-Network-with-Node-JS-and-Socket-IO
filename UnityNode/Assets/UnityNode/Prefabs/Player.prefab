@@ -42,6 +42,8 @@ GameObject:
   - 195: {fileID: 19548056}
   - 114: {fileID: 11400972}
   - 114: {fileID: 11455258}
+  - 114: {fileID: 11417278}
+  - 136: {fileID: 13641058}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -545,7 +547,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 113840}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.88, y: 0, z: 2.37}
+  m_LocalPosition: {x: 1.4592549, y: -0.0000004850504, z: 2.7125986}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 460720}
@@ -648,6 +650,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec88482eeb8a0e24086cc0a0d08ae262, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &11417278
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 113840}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b4cf15d46220194880fd044d101a5d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &11455258
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -660,6 +673,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   socket: {fileID: 0}
+--- !u!136 &13641058
+CapsuleCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 113840}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.23
+  m_Height: 1.35
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!137 &13740464
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1

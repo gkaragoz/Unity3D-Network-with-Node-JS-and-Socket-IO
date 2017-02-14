@@ -38,7 +38,7 @@ public class Network : MonoBehaviour {
         if (e.data["x"]){
             Vector3 movePosition = new Vector3(GetFloatFromJson(e.data, "x"), 0, GetFloatFromJson(e.data, "y"));
 
-            NavigatePosition navigatePos = player.GetComponent<NavigatePosition>();
+            Navigator navigatePos = player.GetComponent<Navigator>();
 
             navigatePos.NavigateTo(movePosition);
         }
@@ -54,7 +54,7 @@ public class Network : MonoBehaviour {
 
         var player = players[e.data["id"].ToString()];
 
-        NavigatePosition navigatePos = player.GetComponent<NavigatePosition>();
+        Navigator navigatePos = player.GetComponent<Navigator>();
 
         navigatePos.NavigateTo(position);
     }

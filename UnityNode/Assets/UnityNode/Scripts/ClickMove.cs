@@ -1,14 +1,15 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
-public class ClickMove : MonoBehaviour {
+public class ClickMove : MonoBehaviour, IClickable {
 
 	public GameObject player;
 	
-	public void OnClick (Vector3 position) {
-		NavigatePosition navPos = player.GetComponent<NavigatePosition>();
+	public void OnClick (RaycastHit hit) {
+		Navigator navPos = player.GetComponent<Navigator>();
 		NetworkMove netMove = player.GetComponent<NetworkMove>();
-		navPos.NavigateTo(position);
+		navPos.NavigateTo(hit.point);
 
-		netMove.OnMove(position);
+		netMove.OnMove(hit.point);
 	}
 }

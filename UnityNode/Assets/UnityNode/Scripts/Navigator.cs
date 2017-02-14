@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class NavigatePosition : MonoBehaviour {
+public class Navigator : MonoBehaviour {
 
 	NavMeshAgent agent;
 
